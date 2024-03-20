@@ -22,8 +22,8 @@ fn main() -> Result<(), anyhow::Error> {
     let device = wg.get_device(DeviceInterface::from_name(interface))?;
     let mut peer_pubkey_decoded: [u8; 32] = [0; 32];
     let mut psk: [u8; 32] = [0; 32];
-    general_purpose::STANDARD.decode_slice(peer_pubkey, &mut peer_pubkey_decoded);
-    general_purpose::STANDARD.decode_slice(pks_buf, &mut psk);
+    general_purpose::STANDARD.decode_slice(peer_pubkey, &mut peer_pubkey_decoded)?;
+    general_purpose::STANDARD.decode_slice(pks_buf, &mut psk)?;
 
     if device
         .peers
